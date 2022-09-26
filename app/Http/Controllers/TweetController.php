@@ -66,7 +66,8 @@ class TweetController extends Controller
     public function show($id)
     {
         $tweet = Tweet::find($id);
-        return view('tweet.show', compact('tweet'));
+        $favolites = $tweet->users;
+        return view('tweet.show', compact('tweet','favolites'));
 
     }
 
@@ -144,6 +145,15 @@ class TweetController extends Controller
         ->orderBy('updated_at', 'desc')
         ->get();
     return view('tweet.index', compact('tweets'));
+    }
+    public function red()
+    {
+      $favolites = User::find(Auth::id())->tweets->pluck('id')->all();
+      $tweets=Tweet::query()
+        ->whereIn('id', $favolites)
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        return view('tweet.index',compact('tweets'));
     }
 
 }

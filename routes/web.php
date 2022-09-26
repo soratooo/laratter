@@ -8,7 +8,7 @@ use App\Http\Controllers\SearchController;
 
 
 Route::group(['middleware' => 'auth'], function () {
-    
+    Route::get('/tweet/red', [TweetController::class, 'red'])->name('tweet.red');
     // 🔽 追加（検索画面）
     Route::get('/tweet/search/input', [SearchController::class, 'create'])->name('search.input');
     // 🔽 追加（検索処理）

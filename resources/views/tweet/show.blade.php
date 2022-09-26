@@ -22,6 +22,14 @@
                 {{$tweet->description}}
               </p>
             </div>
+            <div class="flex flex-col mb-4">
+              <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">{{$favolites->count()}} favolites</p>
+              @foreach($favolites as $favolite)
+              <p class="py-2 px-3 text-grey-darkest" id="favolites{{$loop->index}}">
+                {{$favolite->name}}
+              </p>
+              @endforeach
+            </div>
             <a href="{{ route('tweet.index') }}" class="block text-center w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
               Back
             </a>
